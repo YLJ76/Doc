@@ -1,0 +1,24 @@
+create or replace function FUNC_NEXTID
+(tablename in varchar2) return number is
+--v1.0.2 dxg 20080618解决此过程并发时可能产生相同id问题
+--pragma autonomous_transaction;
+  nextid number(12);
+begin
+
+  begin
+    select nvl(max(id),-1) into nextid from tSequence where upper(name) = upper(tablename);
+  exception
+    when no_data_found then nextid := 0;
+   -- commit;
+  end;
+  if nextid = -1 then
+    INSERT INTO tsequence(name,id) VALUES(tablename,1);
+    nextid := 1;
+  else
+    --v1.0.2 update之后本记录处于锁定状态，这样并发时也不会出现相同ID
+	  update tSequence set id = id+1 where upper(name) = upper(tablename);
+    select nvl(max(id),-1) into nextid from tSequence where upper(name) = upper(tablename);
+  end if;
+
+  return(nextid);
+end FUNC_NEXTID;

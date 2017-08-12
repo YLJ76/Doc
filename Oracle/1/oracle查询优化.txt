@@ -1,0 +1,44 @@
+sql优化：
+	1、数据少的表，放在from的最后面
+	
+	2、where子句中的链接顺序，where子句解析是从下而上的，要把过滤大量记录的条件放在句尾。
+	
+	3、select避免使用 *，减少使用子查询。
+	
+	4、设计表时将索引列设为not null，避免在索引列上使用not、is null以及is not null，在索引列使用通配符无效（'_'、'%'）,避免改变索引列的类型。
+	
+	5、使用in替换or,使用exists替换in、使用not exists或外链接代替not in 。
+	
+	6、尽量不用<>、!=以及通配符（'_'、'%'），用>= 替换 >，用where替换having。
+	
+	7、用exists代替distinct。
+	
+	8、用（union）union all 替换or（适用于索引列）。
+	
+	9、用UNION-ALL 替换UNION ( 如果有可能的话)：
+		当 SQL语句需要UNION两个查询结果集合时,这两个结果集合会以UNION-ALL的方式被合并, 然后在输出最终结果前进行排序. 如果用UNION ALL替代UNION, 这样排序就不是必要了. 效率就会因此得到提高. 需要注意的是，UNION ALL 将重复输出两个结果集合中相同记录. 因此各位还是要从业务需求分析使用UNION ALL的可行性. UNION 将对结果集合排序,这个操作会使用到SORT_AREA_SIZE这块内存. 对于这块内存的优化也是相当重要的。
+
+	10、order by 语句加载索引列上，最好是主键上。
+	
+	11、sql语句要大写（oracle解析语句，先转换为大写）
+	
+删除重复记录
+
+	delete from emp e where e.rowid > ( 
+		select min(x.rowid) 
+		from emp x 
+		where x.emp_no = e.emp_no
+	);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+

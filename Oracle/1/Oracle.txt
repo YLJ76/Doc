@@ -1,0 +1,13 @@
+scott-tiger
+system-orcl
+1>修改system密码
+	登陆到sql:sqlplus / as sysdba
+	重置system密码：alter user system identified by ***；
+2>解除用户被锁
+	用sysdba登录      sysdba:最高权限     normal 普通用户权限    sysoper关闭开启数据库
+	alter user ** account unlocd;--解锁
+	设置登录错误次数 设置为无限次
+	alter profile default limit failed_failed_login_attempts unlimited;
+	
+
+	
