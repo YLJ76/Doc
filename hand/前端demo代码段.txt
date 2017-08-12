@@ -1,0 +1,84 @@
+ionic调整默认样式
+$ionicConfigProvider.platform.ios.tabs.style('standard');
+  $ionicConfigProvider.platform.ios.tabs.position('bottom');
+  $ionicConfigProvider.platform.android.tabs.style('standard');
+  $ionicConfigProvider.platform.android.tabs.position('bottom');
+
+  $ionicConfigProvider.platform.ios.navBar.alignTitle('center');
+  $ionicConfigProvider.platform.android.navBar.alignTitle('center');
+
+  $ionicConfigProvider.platform.ios.backButton.previousTitleText('').icon('ion-ios-arrow-thin-left');
+  $ionicConfigProvider.platform.android.backButton.previousTitleText('').icon('ion-android-arrow-back');
+
+  $ionicConfigProvider.platform.ios.views.transition('ios');
+  $ionicConfigProvider.platform.android.views.transition('android');
+
+  $ionicConfigProvider.views.swipeBackEnabled(false);
+
+云平台获取token
+
+$window.ACallBack = function (message) {
+    var obj = JSON.parse(message);
+    window.localStorage.token = obj.token;
+    window.localStorage.baseUrl = obj.baseUrl;
+  };
+  $window.bCallBack = function (message) {
+
+  };
+  var dict = {
+    "className": "BaseBridge",
+    "function": "getBaseInfo",
+    "successCallBack": "ACallBack",
+    "failureCallBack": "bCallBack"
+  };
+  HandBridge.postMessage(JSON.stringify(dict));
+
+
+登录：
+post: 
+	http://handdev-hmap.cloud.saas.hand-china.com/oauth/token?client_id=a765ff3f-8d33-49b4-a9c9-48e991544242&client_secret=ec2a9a5d-8b21-40fb-b20b-fa846b944e7b&grant_type=password&username=1227&password=111111
+
+config.json
+{
+  "menuVersion": "1.0.0",
+  "menuDesc": "demo",
+  "menuLocalPath": "www/index.html",
+  "menuDestPath": "www",
+  "showConer":"N",
+  "isSilenceUpdate":"N",
+  "isForceUpdate":"N"
+}
+
+
+ $http.get(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'bearer ' + "36a1d820-6d5e-4052-a457-964131d5a86c"
+      }
+    })
+
+
+查询接口：
+	url：api/corpInfo/queryCorpInfo
+	method：get
+	res：{
+  "rows": [
+    {
+      "objectVersionNumber": 2,
+      "id": "1fbf05e6401d400e8442e1a27e85dde4",
+      "corpName": "上海汉得信息技术股份有限公司",
+      "corpDesc": "上海汉得信息技术股份有限公司",
+      "corpLogoUrl": "http://wechat.hand-china.com/upload/20170306/1488806245057.jpg",
+      "corpContact": "黄益全",
+      "corpAddr": "汇联路33号",
+      "bootImgUrl": "http://wechat.hand-china.com/upload/20170306/1488806332575.png",
+      "bootImgRedirect": "http://www.baidu.com",
+      "corpId": "b51ccfbb-d0f1-431f-a713-e9aa186a7fcf",
+      "corpSecret": "14a9f66f-ac54-45c6-8e54-cad4c2df175b"
+    }
+  ],
+  "success": true,
+  "total": 1
+}
+
+
