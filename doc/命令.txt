@@ -1,0 +1,137 @@
+
+//只能和物理机通信
+手动配置IP地址：ifconfig eth0  192.168.42.2
+
+磁盘分区：
+1.最多只能有4个主分区
+
+硬盘命名方式：
+1.IDE硬盘  (并行口硬盘)    hd[a-d]   
+2.SATA硬盘 (串行口硬盘)    sd[a-d]
+
+分区命名方式
+1. hda[1-n]   hdb[1-n]  如hda1 hda2 hdb1 等
+2. sda[1-n]   如 sda1  sda2  sda3 等
+
+
+虚拟机访问外网
+
+1.设置为桥接模式
+2.在虚拟机的菜单栏 编辑->虚拟网络编辑器 ->更改设置
+  ->桥接模式  桥接到物理机正在访问外网的网卡
+
+
+
+Linux共有七种运行等级
+
+    run level 0：关机
+    run level 3：纯文本模式
+    run level 5：含有图形接口模式
+    run level 6：重新启动
+
+
+
+pwd 查看 “当前工作目录”
+
+mkdir 创建目录
+
+touch 创建文件   touch    wenjian.txt
+
+ls -l 查看当前文件列表  等价于  ll
+
+ls -la 查看当前文件列表 包括隐藏文件  等价于 ll -a
+
+ls -ld 查看目录自身的信息
+
+ls -lh 查看文件详细信息，大小以kb显示
+
+服务文件和目录 cp
+cp [options] file destination
+cp [options] file1 file2 destination
+cp -r dir1 dir2   ,复制目录
+
+
+重要目录说明
+
+1、home目录	
+1）root用户的home目录是/root	
+2）普通用户的目录是/home/userx
+
+2、bin目录	
+1）常用的可执行文件	
+2）/bin、/usr/bin、/sbin等
+
+3、外部设备mountpoint	
+1）/media、/mnt		
+2）当检测到设备接入会自动产生挂载点
+
+4、/etc，系统的配置文件
+
+5、/tmp，临时文件
+
+6、/boot，系统内核和开机必要文件
+
+7、/dev，系统所有的设备文件
+
+8、/usr	
+1）unix system resource	
+2）保存程序的相关文件
+
+9、/lost+found	
+1）每个分区都会自动创建
+
+10、/var、/srv
+
+11、/proc
+
+12、/lib、/usr/lib、/usr/locat/lib
+
+
+
+文件详细信息说明
+	    文件的数量	文件拥有者 文件所属群组  文件或目录大小 文件最后修改时间    文件或目录名
+dr-xr-xr-x.      2       root        root         4096          4月 24 04:27         bin
+
+
+
+mv  文件的移动和重命名
+rm  删除文件和目录
+rm 文件名   删除文件
+rm -f 文件名  不询问确认 删除文件
+rm -r 目录名  删除目录
+rm -rf 目录名  不询问确认 删除目录
+
+
+确认文件格式
+file 文件名
+
+查看文件
+cat 文件名  展示所有内容
+cat -b 文件名   展示所有内容，会在第一列显示行数
+
+分页查看文件
+less 文件名    分页查看文件， 使用pgUp pgDown翻页  
+/ 关键字   搜索文件中的关键字   
+
+退出  q
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
